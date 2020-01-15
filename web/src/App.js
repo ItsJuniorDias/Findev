@@ -2,6 +2,7 @@ import React from 'react';
 import './global.css';
 import './App.css';
 import './Sidebar.css';
+import './Main.css';
 
 function App() { 
   return (
@@ -28,11 +29,65 @@ function App() {
               <input name="longitude" id="longitude" required />
             </div>   
            </div>
+           <button type="submit">Salvar</button>
          </form>
-
-         <button type="submit">Salvar</button>
        </aside>
-       <main> </main>
+       <main> 
+         <ul> 
+           <li className="dev-item">
+             <header> 
+               <img src="https://avatars1.githubusercontent.com/u/50254416?s=460&v=4" alt="Alexandre Junior"/>
+               <div className="user-info"> 
+                 <strong>Alexandre Junior</strong>
+                 <span>NodeJs, ReactJs e React Native</span>
+               </div>
+             </header>
+             <p> 
+             Developer Full-Stack systems Analysis and Development student (Fatec Rio Preto). I love to create and learn new things.
+             </p>
+             <a href="https://github.com/ItsJuniorDias">Acessar perfil no GitHub</a>
+           </li>
+           <li className="dev-item">
+             <header> 
+               <img src="https://avatars1.githubusercontent.com/u/50254416?s=460&v=4" alt="Alexandre Junior"/>
+               <div className="user-info"> 
+                 <strong>Alexandre Junior</strong>
+                 <span>NodeJs, ReactJs e React Native</span>
+               </div>
+             </header>
+             <p> 
+             Developer Full-Stack systems Analysis and Development student (Fatec Rio Preto). I love to create and learn new things.
+             </p>
+             <a href="https://github.com/ItsJuniorDias">Acessar perfil no GitHub</a>
+           </li>
+           <li className="dev-item">
+             <header> 
+               <img src="https://avatars1.githubusercontent.com/u/50254416?s=460&v=4" alt="Alexandre Junior"/>
+               <div className="user-info"> 
+                 <strong>Alexandre Junior</strong>
+                 <span>NodeJs, ReactJs e React Native</span>
+               </div>
+             </header>
+             <p> 
+             Developer Full-Stack systems Analysis and Development student (Fatec Rio Preto). I love to create and learn new things.
+             </p>
+             <a href="https://github.com/ItsJuniorDias">Acessar perfil no GitHub</a>
+           </li>
+           <li className="dev-item">
+             <header> 
+               <img src="https://avatars1.githubusercontent.com/u/50254416?s=460&v=4" alt="Alexandre Junior"/>
+               <div className="user-info"> 
+                 <strong>Alexandre Junior</strong>
+                 <span>NodeJs, ReactJs e React Native</span>
+               </div>
+             </header>
+             <p> 
+             Developer Full-Stack systems Analysis and Development student (Fatec Rio Preto). I love to create and learn new things.
+             </p>
+             <a href="https://github.com/ItsJuniorDias">Acessar perfil no GitHub</a>
+           </li>
+         </ul>
+       </main>
      </div>
   );
 }
