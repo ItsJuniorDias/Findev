@@ -8,6 +8,8 @@ import api from './services/api';
 
 
 function App() { 
+ const [devs, setDevs] = useState([]);
+
  const [latitude, setLatitude ] = useState('');
  const [longitude, setLongitude ] = useState('');
 
@@ -33,6 +35,16 @@ function App() {
     ); 
   }, []);
 
+  useEffect(()=> {
+     async function loadDevs() {
+       const response = await api.get('/devs');
+
+       setDevs(response.data);
+     }
+      
+     loadDevs();  
+  }, []);
+
   async function handleAddDev(e) {
     e.preventDefault();
 
@@ -43,7 +55,10 @@ function App() {
       longitude
     })
 
-    console.log(response.data);
+    setGitHubUsername('');
+    setTechs(''); 
+
+    setDevs([...devs, response.data]);
   }
   
   return (
@@ -99,58 +114,22 @@ function App() {
        </aside>
        <main> 
          <ul> 
-           <li className="dev-item">
-             <header> 
-               <img src="https://avatars1.githubusercontent.com/u/50254416?s=460&v=4" alt="Alexandre Junior"/>
-               <div className="user-info"> 
-                 <strong>Alexandre Junior</strong>
-                 <span>NodeJs, ReactJs e React Native</span>
-               </div>
-             </header>
-             <p> 
-             Developer Full-Stack systems Analysis and Development student (Fatec Rio Preto). I love to create and learn new things.
-             </p>
-             <a href="https://github.com/ItsJuniorDias">Acessar perfil no GitHub</a>
-           </li>
-           <li className="dev-item">
-             <header> 
-               <img src="https://avatars1.githubusercontent.com/u/50254416?s=460&v=4" alt="Alexandre Junior"/>
-               <div className="user-info"> 
-                 <strong>Alexandre Junior</strong>
-                 <span>NodeJs, ReactJs e React Native</span>
-               </div>
-             </header>
-             <p> 
-             Developer Full-Stack systems Analysis and Development student (Fatec Rio Preto). I love to create and learn new things.
-             </p>
-             <a href="https://github.com/ItsJuniorDias">Acessar perfil no GitHub</a>
-           </li>
-           <li className="dev-item">
-             <header> 
-               <img src="https://avatars1.githubusercontent.com/u/50254416?s=460&v=4" alt="Alexandre Junior"/>
-               <div className="user-info"> 
-                 <strong>Alexandre Junior</strong>
-                 <span>NodeJs, ReactJs e React Native</span>
-               </div>
-             </header>
-             <p> 
-             Developer Full-Stack systems Analysis and Development student (Fatec Rio Preto). I love to create and learn new things.
-             </p>
-             <a href="https://github.com/ItsJuniorDias">Acessar perfil no GitHub</a>
-           </li>
-           <li className="dev-item">
-             <header> 
-               <img src="https://avatars1.githubusercontent.com/u/50254416?s=460&v=4" alt="Alexandre Junior"/>
-               <div className="user-info"> 
-                 <strong>Alexandre Junior</strong>
-                 <span>NodeJs, ReactJs e React Native</span>
-               </div>
-             </header>
-             <p> 
-             Developer Full-Stack systems Analysis and Development student (Fatec Rio Preto). I love to create and learn new things.
-             </p>
-             <a href="https://github.com/ItsJuniorDias">Acessar perfil no GitHub</a>
-           </li>
+            {devs.map(dev => (
+                   <li key={dev._id} className="dev-item">
+                   <header> 
+                     <img src={dev.avatar_url} alt={dev.name}/>
+                     <div className="user-info"> 
+                      <strong>{dev.name}</strong>
+                      <span>{dev.techs.join(', ')}</span>
+                     </div>
+                   </header>
+                   <p> 
+                     {dev.bio}
+                   </p>
+                   <a href={`https://github.com/${dev.github_username}`}>Acessar perfil no GitHub</a>
+                 </li>
+            ))}
+    
          </ul>
        </main>
      </div>
