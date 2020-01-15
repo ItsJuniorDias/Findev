@@ -4,6 +4,8 @@ import './App.css';
 import './Sidebar.css';
 import './Main.css';
 
+import api from './services/api';
+
 
 function App() { 
  const [latitude, setLatitude ] = useState('');
@@ -33,6 +35,15 @@ function App() {
 
   async function handleAddDev(e) {
     e.preventDefault();
+
+    const response = await api.post('/devs', {
+      github_username,
+      techs,
+      latitude,
+      longitude
+    })
+
+    console.log(response.data);
   }
   
   return (
