@@ -19,6 +19,4 @@ If you want to test the App in the Production mode, the installers are listed be
 - NodeJs [Link](https://nodejs.org/en/download/) for backend.
 - ReactJs [Link](https://reactjs.org/docs/getting-started.html) for frontend.
 - ReactNative [Link](https://facebook.github.io/react-native/docs/getting-started) for mobile
-
-
- - Due to the architecture of the **Node**, through a **websocket**, communication will be made between the server and the frontend in real time;
+- Due to the architecture of the **Node**, through a **websocket**, communication will be made between the server and the frontend in real time;
