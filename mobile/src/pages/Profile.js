@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { View } from 'react-native';
 
 // import { Container } from './styles';
-
-export default function Profile() {
+function Profile() {
   return (
     <View />
   );
 }
+
+export default Profile;
+
+
+

@@ -6,8 +6,26 @@ import Profile from './pages/Profile';
 
 const Routes = createAppContainer(
   createStackNavigator({
-    Main,
-    Profile
+    Main: {
+      screen: Main,
+      navigationOptions: {
+        title: 'Findev',
+        headerTitleAlign: "center",
+      }
+    }, 
+    Profile: {
+      screen: Profile,
+      navigationOptions: {
+        title: 'Perfil do Github'
+      }
+    },
+  }, {
+    defaultNavigationOptions: {
+      headerTintColor: "#fff",
+      headerStyle: {
+        backgroundColor: "#4e1ce9",
+      }
+    }
   })
 );
 
