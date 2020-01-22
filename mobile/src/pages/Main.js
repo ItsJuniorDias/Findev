@@ -40,13 +40,13 @@ function Main({ navigation })  {
     
     const response = await api.get('/search', {
       params: {
-        techs,
-        latitude, 
-        longitude
+        latitude,
+        longitude,
+        techs
       }
     }); 
     
-    console.log(response.data);
+    console.log(response.data.devs);
     setDevs(response.data.devs);
   }
 
@@ -70,14 +70,14 @@ function Main({ navigation })  {
            <Marker 
            key={dev._id}
            coordinate={{ 
-             latitude: dev.location.coordinates[0] , 
-             longitude:dev.location.coordinates[1] 
+             longitude: dev.location.coordinates[0] , 
+             latitude: dev.location.coordinates[1], 
              }}
              >  
 
-           <Image style={styles.avatatar} source={{ uri: dev.avatar_url }}/>
+           <Image style={styles.avatar} source={{ uri: dev.avatar_url }}/>
            <Callout onPress={() => { 
-             navigation.navigate('Profile', {github_username: dev.github_username});
+             navigation.navigate('Profile', {github_username: dev.github_username})
            }}> 
              <View style={styles.callout}>
                <Text style={styles.devName}>{dev.name}</Text>
@@ -97,12 +97,12 @@ function Main({ navigation })  {
        autoCapitalize="words"
        autoCorrect={false}
        value={techs}
-       onChangeText={setTechs}
+       onChangeText={text => setTechs(text)}
       />
       
       <TouchableOpacity  onPress={loadDevs} style={styles.loadButton}>
         <MaterialIcons name="my-location" size={30} color="#fff"/>
-        </TouchableOpacity>
+      </TouchableOpacity>
      </View>
    
   </>
