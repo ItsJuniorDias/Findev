@@ -61,7 +61,6 @@ If you want to test the App in the Production mode, the installers are listed be
 - Use of **react-native-gesture-handler**, dependent on *react-navigation*, responsible for handling user gestures;
 - Use of **react-native-reanimated**, used to animate transitions at times when the user navigates between screens;
 - Configuration of **axios** to make requests to external APIs;
-- Using **asyncStorage** as local database in format and working in key format => value
 
 
 ## Getting Started
