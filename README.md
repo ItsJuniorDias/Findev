@@ -1,6 +1,11 @@
 # DevRadar :octocat:
 Semana Omnistack #10 | Findev - Application that finds other devs near you
 
+![mobile1](https://user-images.githubusercontent.com/50254416/72995009-ef947100-3dd6-11ea-8f94-8d3ee17bd822.PNG)
+![mobile2](https://user-images.githubusercontent.com/50254416/72995011-ef947100-3dd6-11ea-9f28-735015995b56.PNG)
+![Web](https://user-images.githubusercontent.com/50254416/72995015-f1f6cb00-3dd6-11ea-8d21-6bcf05f10a59.PNG)
+
+
  ## About this Project
 
 The idea of the App is:
