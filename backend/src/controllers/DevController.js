@@ -2,6 +2,7 @@ const axios = require('axios');
 const Dev = require('../models/Dev');
 const parseAsStringAsArray = require('../utils/parseStringAsArray');
 const { findConnections, sendMessage } = require('../webSocket');
+const {  updateDevData, findDevToDelete, deleteDev} = require('../services/devService');
 
 
 module.exports = {
@@ -48,8 +49,31 @@ module.exports = {
 
       sendMessage(sendSocketMessageTo, 'new-dev', dev);
     }
-  
-  
+
     return response.json(dev); 
+  },
+   
+  async update(req, res) {
+    //nome avatar bio localização tecnologias
+    const { id } = req.params;
+    const { name, longitude, latitude, techs, bio } = req.body;
+
+    const techsArray = parseStringAsArray(techs);
+    const location = pinPointLocation(longitude, latitude);
+    const dev = await updateDevData(id, name, bio, techsArray, location);
+
+    return res.json(dev);
+  },
+
+  async destroy(req, res) {
+    const { id } = req.params;
+    const devExists = await findDevToDelete(id)
+    const result = devExists ? { message: `O usuário ${devExists.name} foi removido com sucesso!` } : { message: 'Usuário não encontrado!' }
+
+    if (devExists) {
+      await deleteDev(id)
+    }
+
+    return res.json(result)
   }
 };
