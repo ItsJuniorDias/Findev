@@ -39,23 +39,23 @@ If you want to test the App in the Production mode, the installers are listed be
 - Configuration of **mongoose** (ODM that uses Javascript syntax) to handle **MongoDB**, a nonrelational database;
 - Using **axios** to handle external API requests.
 
-## Web Socket
+### Web Socket
   - Configuration **socket.io**, library that abstracts from Node's standard websocket protocol and provides an easier way to work with it
   
 ## Frontend
 
-## Configuration
+### Configuration
   - Configuration **BrowserRouter** and **Route** (lib *react-router-dom*) to handle navigation and each route individually;
   - Configuration of **axios** to make the request to the database;
   - Stylization of github Login pages and user listings;
   - Implementation of the like and dislike features;
 
-## Web Socket
+### Web Socket
   - configuration **socket.io-client**, responsible for creating a connection via websocket protocol;
   
   ## Mobile
   
-  ## Configuration
+  ### Configuration
   
 - Using **react-navigation** to deal with navigation in a basic way;
 - Use of **react-native-gesture-handler**, dependent on *react-navigation*, responsible for handling user gestures;
