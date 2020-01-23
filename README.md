@@ -39,3 +39,69 @@ If you want to test the App in the Production mode, the installers are listed be
 - Configuration of **mongoose** (ODM that uses Javascript syntax) to handle **MongoDB**, a nonrelational database;
 - Using **axios** to handle external API requests.
 
+## Getting Started
+
+### Prerequisites
+
+To run this project in the development mode, you'll need to have a basic environment to run a React and React Native App, also,  that can be found [here](https://facebook.github.io/react-native/docs/getting-started).
+
+### Installing
+
+**Cloning the Repository**
+
+```
+$ git clone https://github.com/ItsJuniorDias/Findev
+
+$ cd Findev
+```
+
+**Installing dependencies**
+
+```
+$ yarn add nodemon
+```
+
+_or_
+
+```
+$ npm install
+```
+**Running**
+
+**Backend**
+
+```
+$ cd backend
+$ yarn dev
+```
+-Leave running the backend and run the front after mobile.
+
+**FrontEnd**
+
+```
+$ cd frontend
+$ yarn start
+```
+
+**Mobile**
+- You need to have Android Studio installed and configured and your computer to run APP React Native;
+- With all dependencies installed and the environment properly configured, you can now run the app;
+- With Android Studio running and Emulador open:
+
+Android
+
+```
+$ cd Findev
+$ react-native run-android
+```
+
+iOS
+
+```
+$ cd Findev
+$ react-native run-ios
+```
+
+
+
+
