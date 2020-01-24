@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, {useEffect, useState} from 'react';
 import api from './services/api';
 import './global.css';
@@ -6,116 +7,82 @@ import './Sidebar.css';
 import './Main.css';
 
 import DevItem from './components/DevItem';
+import DevForm from './components/DevForm';
+import UpdateForm from './components/UpdateForm';
 
 function App() { 
  const [devs, setDevs] = useState([]);
 
- const [latitude, setLatitude ] = useState('');
- const [longitude, setLongitude ] = useState('');
-
- const [github_username, setGitHubUsername ] = useState('');
- const [techs, setTechs ] = useState('');
+ const [actualDev, setActualDev ] = useState('');
+ const [editMode, setEditMode ] = useState(false);
 
 
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const {latitude, longitude} = position.coords; 
+ async function loadDevs() {
+  const response = await api.get('/devs');
+  setDevs(response.data.reverse())
+}
 
-        setLatitude(latitude);
-        setLongitude(longitude);
-      },
-      (err) => {
-        console.log(err);
-      },
-      {
-        timeout: 30000,
-      }
-    ); 
-  }, []);
+useEffect(() => {
+  loadDevs()
+}, [])
 
-  useEffect(()=> {
-     async function loadDevs() {
-       const response = await api.get('/devs');
+async function handleSubmit(data) {
+  const response = await api.post('/devs', data)
 
-       setDevs(response.data);
-     }
-      
-     loadDevs();  
-  }, []);
+  setDevs([response.data, ...devs])
+}
 
-  async function handleAddDev(e) {
-    e.preventDefault();
+  async function handleDelete(data) {
+    await api.delete(`/devs/${data._id}`)
 
-    const response = await api.post('/devs', {
-      github_username,
-      techs,
-      latitude,
-      longitude
-    })
+    const filterDevs = devs.filter( dev => dev._id !== data._id)
+    setDevs(filterDevs); 
+  }
 
-    setGitHubUsername('');
-    setTechs(''); 
+  async function handleUpdate(data) {
+    await api.put(`/devs/${actualDev._id}`, data)
 
-    setDevs([...devs, response.data]);
+    loadDevs();
+    setMode();
+  }
+
+  function loadMode() {
+    if (editMode) {
+      return (
+        <aside>
+          <strong> </strong>
+          <UpdateForm onUpdateForm={handleUpdate} onCalcel={setMode} dev={actualDev} />
+        </aside>
+      )
+    } else {
+      return (
+        <aside>
+          <strong>Cadastrar</strong>
+          <DevForm onSubmit={handleSubmit} />
+        </aside>
+      )
+    }
+  }
+  
+
+
+  function setMode(data) {
+    if (!editMode) {
+      setEditMode(true)
+      setActualDev(data)
+    } else {
+      setEditMode(false)
+    }
   }
   
   return (
      <div id="app"> 
-       <aside> 
-         <strong>Cadastrar</strong>
-         <form onSubmit={handleAddDev}>
-           <div className="input-block">
-             <label htmlFor="github_username"> Usuário do GitHub</label>
-             <input 
-             name="github_username" 
-             id="github_username" 
-             required  
-             value={github_username}
-             onChange={e=> setGitHubUsername(e.target.value)}
-             />
-           </div>
-           <div className="input-block">
-             <label htmlFor="techs">Tecnologias</label>
-             <input 
-             name="techs" 
-             id="techs" 
-             required 
-             value={techs}
-             onChange={e=> setTechs(e.target.value)}
-             />
-           </div>
-
-           <div className="input-group">
-            <div className="input-block">
-              <label htmlFor="latitude">Latitude</label>
-              <input 
-              type="number" 
-              name="latitude" 
-              id="latitude" 
-              required value={latitude} 
-              onChange={e => setLatitude(e.target.value)}
-              />
-            </div>  
-            <div className="input-block">
-              <label htmlFor="longitude">Longitude</label>
-              <input 
-              type="number" 
-              name="longitude"
-              id="longitude"
-              required value={longitude} 
-              onChange={e => setLongitude(e.target.value)}
-                />
-            </div>   
-           </div>
-           <button type="submit">Salvar</button>
-         </form>
-       </aside>
+      {loadMode()}
        <main> 
          <ul> 
             {devs.map(dev => (
-              <DevItem key={dev._id} dev={dev}/>
+              <DevItem key={dev._id} dev={dev} onDeleteForm={handleDelete} onUpdateClick={setMode} />
             ))}
     
          </ul>
