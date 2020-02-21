@@ -1,4 +1,4 @@
-# DevRadar :octocat:
+# DevRadar :earth_americas:
 Semana Omnistack #10 | Findev - Application that finds other devs near you
 
 ## Mobile
